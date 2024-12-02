@@ -37,6 +37,9 @@ def solve2(lines):
   ns = 0
   for l in lines:
     nums = [int(n) for n in l.split(" ")]
+    if isSafe(nums):
+      ns += 1
+      continue
     for i in range(len(nums)):
       n = nums.pop(i)
       if isSafe(nums):
