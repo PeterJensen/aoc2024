@@ -13,14 +13,7 @@ def getLines():
 def solve1(lines):
   muls = []
   for l in lines:
-    lr = l
-    while len(lr) > 0:
-      m = re.search(r"mul\(\d{1,3},\d{1,3}\)", lr)
-      if m == None:
-        break
-      else:
-        muls.append(m.group(0))
-        lr = lr[m.end():]
+    muls += re.findall(r"mul\(\d{1,3},\d{1,3}\)", l)
   sum = 0
   for mul in muls:
     m = re.search(r"(\d+),(\d+)", mul)
@@ -30,14 +23,7 @@ def solve1(lines):
 def solve2(lines):
   insts = []
   for l in lines:
-    lr = l
-    while len(lr) > 0:
-      m = re.search(r"mul\(\d{1,3},\d{1,3}\)|do\(\)|don't\(\)", lr)
-      if m == None:
-        break
-      else:
-        insts.append(m.group(0))
-        lr = lr[m.end():]
+    insts += re.findall(r"mul\(\d{1,3},\d{1,3}\)|do\(\)|don't\(\)", l)
   sum = 0
   useMul = True
   for inst in insts:
