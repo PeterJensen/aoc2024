@@ -3,7 +3,7 @@
 import sys
 
 class Config:
-  title = "--- Day 04:  ---"
+  title = "--- Day 04: Ceres Search ---"
   input = "input-04.txt"
 
 def getLines():
