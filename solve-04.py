@@ -1,6 +1,7 @@
 # Author: Peter Jensen
 
 import sys
+import itertools
 
 class Config:
   title = "--- Day 04: Ceres Search ---"
@@ -31,13 +32,7 @@ def diags2(lines):
       yield lines[y][x] + lines[y+1][x-1] + lines[y+2][x-2] + lines[y+3][x-3]
 
 def all(lines):
-  for w in verticals(lines):
-    yield w
-  for w in horizontals(lines):
-    yield w
-  for w in diags1(lines):
-    yield w
-  for w in diags2(lines):
+  for w in itertools.chain(verticals(lines), horizontals(lines), diags1(lines), diags2(lines)):
     yield w
 
 def solve1(lines):
