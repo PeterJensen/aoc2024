@@ -4,7 +4,7 @@ import sys
 import itertools
 
 class Config:
-  title = "--- Day 05:  ---"
+  title = "--- Day 05: Print Queue ---"
   input = "input-05.txt"
 
 def getLines():
