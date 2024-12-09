@@ -100,7 +100,7 @@ def defrag(fileBlocks, freeBlocks):
         freeBlocks.pop(freeIndex)
       else:
         freeBlocks[freeIndex] = (freePos + fileSize, freeSize - fileSize)
-    combineFree()
+      combineFree()
 
 def checksum2(fileBlocks):
   c = 0
