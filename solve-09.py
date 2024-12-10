@@ -119,7 +119,6 @@ def checksum2(fileBlocks):
 def solve2(lines):
   fileBlocks, freeBlocks = getDisk2(lines[0])
   defrag(fileBlocks, freeBlocks)
-  print(len(freeBlocks))
   print("Solution 2: ", checksum2(fileBlocks))
   
 def main():
