@@ -89,11 +89,18 @@ def defrag(fileBlocks, freeBlocks):
         freeBlocks.pop(fi+1)
       else:
         fi += 1
+#  def insertFree(pos, size):
+#    for fi, (fp, fs) in enumerate(freeBlocks):
+#      if fp > pos:
+#        freeBlocks.insert(fi, (pos, size))
+#        return
+#    freeBlocks.append((pos, size))
   for fileIndex in range(len(fileBlocks)-1, -1, -1):
     fileId, filePos, fileSize = fileBlocks[fileIndex]
     freeIndex = findFreeBlock(fileSize, filePos)
     freePos, freeSize = freeBlocks[freeIndex]
     if freeIndex != -1:
+#      insertFree(filePos, fileSize)
       freeBlocks.append((filePos, fileSize))
       fileBlocks[fileIndex] = (fileId, freePos, fileSize)
       if fileSize == freeSize:
@@ -112,6 +119,7 @@ def checksum2(fileBlocks):
 def solve2(lines):
   fileBlocks, freeBlocks = getDisk2(lines[0])
   defrag(fileBlocks, freeBlocks)
+  print(len(freeBlocks))
   print("Solution 2: ", checksum2(fileBlocks))
   
 def main():
