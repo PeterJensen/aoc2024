@@ -166,7 +166,6 @@ class Grid2(Grid):
         return None
 
 def solve2(lines):
-  sys.setrecursionlimit(10000)
   grid, moves = parse(lines, Grid2)
 #  print(grid)
   for mi, m in enumerate(moves):
