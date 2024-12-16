@@ -90,9 +90,9 @@ class Grid2(Grid):
       x, y = p
       if (x,y) in self.walls or (x-1, y) in self.walls:
         return "#"
-      elif (x,y) in self.boxes and (x+1) not in self.boxes:
+      elif (x,y) in self.boxes and (x+1, y) not in self.boxes:
         return "["
-      elif (x-1,y) in self.boxes and (x) not in self.boxes:
+      elif (x-1,y) in self.boxes and (x, y) not in self.boxes:
         return "]"
       elif (x,y) == self.robot:
         return "@"
