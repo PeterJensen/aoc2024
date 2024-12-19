@@ -95,22 +95,20 @@ def solve1(lines):
   computer = Computer(lines)
   computer.run()
   print("Solution 1: ", computer.output)
-  print("Solution 1: ", runPgm(25358015))
 
 def getValidAs(digit, expected, validAs):
   newValidAs = []
   if digit == 0:
-    for a in range(128):
+    for a in range(1024):
       output = runPgm(a)
       if output[2*digit:2*digit+1] == expected[2*digit:2*digit+1]:
         newValidAs.append(a)
   else:
     for a in range(8):
-      upperA = a << (4 + 3*digit)
+      upperA = a << (7 + 3*digit)
       for av in validAs:
         newA = upperA + av
         output = runPgm(newA)
-        print(f"Trying {newA:o}: {output}")
         if output[2*digit:2*digit+1] == expected[2*digit:2*digit+1]:
           newValidAs.append(newA)
   return newValidAs
@@ -118,87 +116,18 @@ def getValidAs(digit, expected, validAs):
 def solve2(lines):
   expected = "2,4,1,1,7,5,0,3,4,7,1,6,5,5,3,0"
   validAs = []
-  for d in range(10):
+  for d in range(len(expected)//2 + 1):
     validAs = getValidAs(d, expected, validAs)
-    print(f"digit: {d}, expected: {expected[d*2:d*2+1]}")
-    for a in validAs:
-      print(f"{a:o}: {runPgm(a)}")
-  return
-
-  computer = Computer(lines)
-  computer.printProgram()
-  for a in range(8**7, 8**8):
-    computer.reset()
-    newA = a
-    computer.regs["A"] = newA
-    computer.run ()
-    if computer.output.find("2,4,1,1,7,5") != -1:
-      print(f"{a} {newA}: {computer.output} B: {computer.regs['B']}")
-  return
-  computer.regs["A"] = a
-  computer.run()
-  print(f"{a}: {computer.output}")
-  return
-  programLen = len(computer.programStr)
-  minA = getMinA(computer, 10000000000000, programLen)
-  maxA = getMaxA(computer, 1000000000000000, programLen)
-
-  computer.reset()
-  computer.regs["A"] = minA
-  computer.doTrace = True
-  computer.run()
-  print(f"{minA}: {computer.output}")
-  return
-
-  computer.reset()
-  computer.regs["A"] = minA + 1
-  computer.run()
-  print(f"{minA+1}: {computer.output}")
-
-  computer.reset()
-  computer.regs["A"] = maxA
-  computer.run()
-  print(f"{maxA}: {computer.output}")
-  computer.reset()
-  computer.regs["A"] = maxA - 1
-  computer.run()
-  print(f"{maxA+1}: {computer.output}")
-
-  step = (maxA - minA) // 100
-  a = minA
-  while a <= maxA:
-    computer.reset()
-    computer.regs["A"] = a
-    computer.run()
-    print(f"{a}: {computer.output}")
-    a += step
-
-  print(f"maxA - minA: {maxA - minA}")
-  return
-
-  a = 1
-#  computer.doTrace = True
-  minA = 0
-  while True:
-    computer.reset()
-    computer.regs["A"] = a
-    print(a)
-    computer.run()
-    print(computer.output)
-    if len(computer.output) > programLen:
-      maxA = a
-      break
-    if len(computer.output) < programLen:
-      minA = a
-    a *= 10
-  print(minA, maxA)
-  print("Solution 2: ")
+#    print(f"digit: {d}, expected: {expected[d*2:d*2+1]}")
+#  for a in validAs:
+#    print(f"{a:o}: {runPgm(a)}")
+  print("Solution 2: ", validAs[0])
   
 def main():
   print(Config.title)
   lines = getLines()
   solve1(lines)
-#  solve2(lines)
+  solve2(lines)
 
 if __name__ == "__main__":
   main()
